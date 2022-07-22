@@ -7,3 +7,12 @@ services:
       - "3000:3000"
     volumes:
       - .:/api
+  db:
+    container_name: postgres_database
+    image: postgres
+    environment:
+      POSTGRES_USER: docker
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: cine-dev
+    ports:
+      - "5433:5432" 
