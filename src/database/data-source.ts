@@ -9,7 +9,6 @@ export const AppDataSource = new DataSource({
   username: 'docker',
   password: 'root',
   database: 'cine-dev',
-  synchronize: true,
-  migrations: ['src/database/migrations/*.ts'],
+  migrations: ['src/database/migrations/*.js'],
   entities: ['src/**/*.entity.ts']
 });
