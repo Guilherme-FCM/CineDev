@@ -8,8 +8,15 @@ export class MoviesController {
 
   @Get()
   async findAll() {
-    const movies = await this.moviesService.findAll();
-    return movies;
+    return await this.moviesService.findAll();
+  }
+
+  @Get(':id')
+  async findOne(@Param('id') id: string) {
+    const movie = await this.moviesService.findOne(id);
+
+    if (!movie) return { error: 'Movie not found.' };
+    return movie;
   }
 
   @Post()

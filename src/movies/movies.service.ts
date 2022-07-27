@@ -15,6 +15,10 @@ export class MoviesService {
     return await this.repository.find();
   }
 
+  async findOne(id: string) {
+    return await this.repository.findOne({ where: { id } });
+  }
+
   async create(movieData: Movie): Promise<Movie | Error> {
     if (await this.repository.findOneBy({ name: movieData.name }))
       return Error('A movie with this name alredy exists.');
