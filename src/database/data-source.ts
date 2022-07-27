@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
-import "reflect-metadata";
-import { DataSource } from "typeorm";
+import { Movie } from 'src/movies/movies.entity.ts';
+import { DataSource } from 'typeorm';
 
 export const AppDataSource = new DataSource({
   type: 'postgres',
@@ -9,6 +9,6 @@ export const AppDataSource = new DataSource({
   username: 'docker',
   password: 'root',
   database: 'cine-dev',
-  migrations: ['src/database/migrations/*.js'],
-  entities: ['src/**/*.entity.ts']
+  migrations: [__dirname + 'src/database/migrations/*.ts'],
+  entities: [Movie]
 });
