@@ -22,4 +22,12 @@ export class MoviesService {
     const movie = this.repository.create(movieData);
     return await this.repository.save(movie);
   }
+
+  async destroy(id: string) {
+    return await this.repository.delete(id);
+  }
+
+  async update() {
+    //
+  }
 }

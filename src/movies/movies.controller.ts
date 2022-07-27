@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Req } from '@nestjs/common';
+import { Controller, Delete, Get, Param, Post, Put, Req } from '@nestjs/common';
 import { Request } from 'express';
 import { MoviesService } from './movies.service';
 
@@ -27,5 +27,15 @@ export class MoviesController {
       return { error: result.message };
     }
     return result;
+  }
+
+  @Delete(':id')
+  async destroy(@Param('id') id: string) {
+    return await this.moviesService.destroy(id);
+  }
+
+  @Put()
+  async update() {
+    //
   }
 }
