@@ -34,8 +34,15 @@ export class MoviesController {
     return await this.moviesService.destroy(id);
   }
 
-  @Put()
-  async update() {
-    //
+  @Put(':id')
+  async update(@Param('id') id: string, @Req() request: Request) {
+    const { name, genre, classification, resume } = request.body;
+
+    return await this.moviesService.update(id, {
+      name,
+      genre,
+      classification,
+      resume,
+    });
   }
 }

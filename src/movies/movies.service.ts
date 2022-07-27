@@ -27,7 +27,7 @@ export class MoviesService {
     return await this.repository.delete(id);
   }
 
-  async update() {
-    //
+  async update(id: string, data) {
+    return await this.repository.update(id, data);
   }
 }
