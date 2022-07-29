@@ -16,7 +16,7 @@ export class CreateMovies1658775210825 implements MigrationInterface {
           { name: 'name', type: 'varchar' },
           { name: 'genre', type: 'varchar' },
           { name: 'classification', type: 'integer' },
-          { name: 'resume', type: 'text' },
+          { name: 'resume', type: 'text', isNullable: true },
         ],
       }),
     );

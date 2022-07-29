@@ -12,7 +12,7 @@ export class Movie {
   genre: string;
 
   @Column()
-  classification?: number;
+  classification: number;
 
   @Column()
   resume?: string;

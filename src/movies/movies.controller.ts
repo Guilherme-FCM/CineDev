@@ -23,6 +23,9 @@ export class MoviesController {
   async create(@Req() request: Request) {
     const { name, genre, classification, resume } = request.body;
 
+    if (!genre || !classification)
+      return { error: 'Genre and classification are required.' };
+
     const result = await this.moviesService.create({
       name,
       genre,
