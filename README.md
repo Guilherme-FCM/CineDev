@@ -26,23 +26,12 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-## Installation
+## Installation and Run
 
+1. Install [Docker](https://www.docker.com/get-started/) on your computer.
+2. Run in project folder:
 ```bash
-$ npm install
-```
-
-## Running the app
-
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+$ docker-compose up
 ```
 
 ## Test
@@ -57,6 +46,22 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+
+## Documentation
+| Method | Resource     | Description    |
+| ------ | ------------ | -------------- | 
+| GET    | /movies      | Get all movies |
+| GET    | /movies/{id} | Get one movie  |
+| POST   | /movies      | Create a movie |
+| PUT    | /movies/{id} | Modify a movie |
+| DELETE | /movies/{id} | Delete a movie |
+
+## Tecnologies
+- [Node.js](https://nodejs.org/en/docs/)
+- [TypeScript](https://www.typescriptlang.org/docs/)
+- [Nest.js](https://docs.nestjs.com/)
+- [TypeORM](https://typeorm.io/)
+- [Docker](https://docs.docker.com/)
 
 ## Support
 
