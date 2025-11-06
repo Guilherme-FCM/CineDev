@@ -2,9 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Movie } from './movies.entity';
+import { ServiceInterface } from './movies.service.interface';
 
 @Injectable()
-export class MoviesService {
+export class MoviesService implements ServiceInterface {
   constructor(
     @InjectRepository(Movie)
     private repository: Repository<Movie>,
@@ -27,10 +28,10 @@ export class MoviesService {
   }
 
   async destroy(id: string) {
-    return await this.repository.delete(id);
+    await this.repository.delete(id);
   }
 
   async update(id: string, data) {
-    return await this.repository.update(id, data);
+    await this.repository.update(id, data);
   }
 }
