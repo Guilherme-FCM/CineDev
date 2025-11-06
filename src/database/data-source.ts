@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Movie } from '../movies/movies.entity.ts';
+import { Movie } from '../movies/movies.entity';
 import { DataSource } from 'typeorm';
 
 export const AppDataSource = new DataSource({
