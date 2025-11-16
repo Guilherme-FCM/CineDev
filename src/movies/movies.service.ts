@@ -1,37 +1,15 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { Movie } from './movies.entity';
+import { Inject, Injectable } from '@nestjs/common';
 import { ServiceInterface } from './movies.service.interface';
+import { MoviesRepository } from './movies.repository.interface';
 
 @Injectable()
 export class MoviesService implements ServiceInterface {
   constructor(
-    @InjectRepository(Movie)
-    private repository: Repository<Movie>,
+    @Inject('MoviesRepository')
+    private repository: MoviesRepository,
   ) {}
 
   async findAll() {
-    return await this.repository.find();
-  }
-
-  async findOne(id: string) {
-    return await this.repository.findOne({ where: { id } });
-  }
-
-  async create(movieData: Movie): Promise<Movie | Error> {
-    if (await this.repository.findOneBy({ name: movieData.name }))
-      return Error('A movie with this name alredy exists.');
-
-    const movie = this.repository.create(movieData);
-    return await this.repository.save(movie);
-  }
-
-  async destroy(id: string) {
-    await this.repository.delete(id);
-  }
-
-  async update(id: string, data) {
-    await this.repository.update(id, data);
+    return await this.repository.list();
   }
 }
