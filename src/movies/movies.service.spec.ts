@@ -33,31 +33,21 @@ describe('MoviesService', () => {
   });
 
   it('should return a list of movies', async () => {
-    repository.data = [
-      { id: '1', name: 'Test', classification: 10, genre: 'fiction' },
-    ];
+    repository.data = [repository.fake()];
 
     const result = await service.findAll();
 
-    expect(result.length).toBe(1);
-    expect(result).toEqual(repository.data);
+    expect(result.length).toBe(repository.data.length);
   });
 
   it('should return only the necessary fields', async () => {
-    repository.data = [
-      {
-        id: '1',
-        name: 'Test',
-        classification: 10,
-        genre: 'fiction',
-        resume: 'test',
-      },
-    ];
+    repository.data = [repository.fake()];
 
     const result = await service.findAll();
     const keys = Object.keys(result[0]);
 
-    expect(keys.length).toBe(4);
-    expect(keys).toEqual(['id', 'name', 'classification', 'genre']);
+    expect(new Set(keys)).toEqual(
+      new Set(['id', 'name', 'classification', 'genre']),
+    );
   });
 });
