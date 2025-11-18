@@ -4,17 +4,18 @@ import { MoviesMockRepository } from './movies.repository.mock';
 
 describe('MoviesService', () => {
   let service: MoviesService;
-  const repository = new MoviesMockRepository();
+  let repository: MoviesMockRepository;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         MoviesService,
-        { provide: 'MoviesRepository', useValue: repository },
+        { provide: 'MoviesRepository', useValue: new MoviesMockRepository() },
       ],
     }).compile();
 
     service = module.get(MoviesService);
+    repository = module.get('MoviesRepository');
   });
 
   it('should be defined', () => {
@@ -24,13 +25,39 @@ describe('MoviesService', () => {
   // -------------------------
   // findAll
   // -------------------------
-  it('deve retornar todos os filmes', async () => {
+  it('should return an empty list of movies', async () => {
+    const result = await service.findAll();
+
+    expect(result).toEqual([]);
+    expect(result.length).toBe(0);
+  });
+
+  it('should return a list of movies', async () => {
     repository.data = [
       { id: '1', name: 'Test', classification: 10, genre: 'fiction' },
     ];
 
     const result = await service.findAll();
 
+    expect(result.length).toBe(1);
     expect(result).toEqual(repository.data);
+  });
+
+  it('should return only the necessary fields', async () => {
+    repository.data = [
+      {
+        id: '1',
+        name: 'Test',
+        classification: 10,
+        genre: 'fiction',
+        resume: 'test',
+      },
+    ];
+
+    const result = await service.findAll();
+    const keys = Object.keys(result[0]);
+
+    expect(keys.length).toBe(4);
+    expect(keys).toEqual(['id', 'name', 'classification', 'genre']);
   });
 });

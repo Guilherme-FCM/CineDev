@@ -10,6 +10,12 @@ export class MoviesService implements ServiceInterface {
   ) {}
 
   async findAll() {
-    return await this.repository.list();
+    const movies = await this.repository.list();
+    return movies.map(({ id, name, classification, genre }) => ({
+      id,
+      name,
+      classification,
+      genre,
+    }));
   }
 }
