@@ -7,4 +7,8 @@ export class MockService implements ServiceInterface {
   findAll(): Promise<Movie[]> {
     throw new Error('Method not implemented.');
   }
+
+  create(movie: Movie): Promise<Movie> {
+    throw new Error('Method not implemented.');
+  }
 }

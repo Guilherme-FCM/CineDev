@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ServiceInterface } from './movies.service.interface';
 import { MoviesRepository } from './movies.repository.interface';
+import { MovieDTO } from './dtos/movie.dto';
 import { MoviesDTO } from './dtos/movies.dto';
 
 @Injectable()
@@ -13,5 +14,9 @@ export class MoviesService implements ServiceInterface {
   async findAll() {
     const movies = await this.repository.list();
     return MoviesDTO.to(movies);
+  }
+
+  async create(movie: MovieDTO) {
+    return await this.repository.create(movie);
   }
 }

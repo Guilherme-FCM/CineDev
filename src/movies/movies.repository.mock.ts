@@ -19,4 +19,9 @@ export class MoviesMockRepository implements MoviesRepository {
   list(): Promise<Movie[]> {
     return Promise.resolve(this.data);
   }
+
+  create(movie: Movie): Promise<Movie> {
+    this.data.push(movie);
+    return Promise.resolve(movie);
+  }
 }

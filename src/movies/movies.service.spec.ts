@@ -1,6 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { MoviesService } from './movies.service';
 import { MoviesMockRepository } from './movies.repository.mock';
+import { MovieDTO } from './dtos/movie.dto';
 
 describe('MoviesService', () => {
   let service: MoviesService;
@@ -49,5 +50,17 @@ describe('MoviesService', () => {
     expect(new Set(keys)).toEqual(
       new Set(['id', 'name', 'classification', 'genre']),
     );
+  });
+
+  // -------------------------
+  // create
+  // -------------------------
+  it('should create a movie', async () => {
+    const movie = repository.fake() as MovieDTO;
+
+    const result = await service.create(movie);
+    const list = await repository.list();
+
+    expect(list).toContain(result);
   });
 });
