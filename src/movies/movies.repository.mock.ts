@@ -12,7 +12,7 @@ export class MoviesMockRepository implements MoviesRepository {
       name: 'Test',
       classification: 10,
       genre: 'fiction',
-      resume: 'test',
+      resume: 'Test movie resume',
     };
   }
 

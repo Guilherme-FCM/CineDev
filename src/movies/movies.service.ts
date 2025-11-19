@@ -17,8 +17,10 @@ export class MoviesService implements ServiceInterface {
   }
 
   async create(movie: MovieDTO) {
-    const finded = await this.repository.firstByName(movie.name);
+    if (movie.resume.length < 10)
+      throw new Error('Resume must have at least 10 caracters');
 
+    const finded = await this.repository.firstByName(movie.name);
     if (finded) throw new Error('Movie name already exist');
 
     return await this.repository.create(movie);

@@ -70,6 +70,15 @@ describe('MoviesService', () => {
 
     const result = service.create(movie as MovieDTO);
 
+    await expect(() => result).rejects.toThrow();
+  });
+
+  it('should not create a movie with a resume less than 10 caracters', async () => {
+    const movie = repository.fake();
+    movie.resume = '123456789'; // Phrase with 9 caracters
+
+    const result = service.create(movie as MovieDTO);
+
     await expect(async () => result).rejects.toThrow();
   });
 });
