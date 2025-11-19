@@ -6,13 +6,13 @@ import { Movie } from './movies.entity';
 export class MoviesMockRepository implements MoviesRepository {
   public data: Movie[] = [];
 
-  fake(): Movie {
+  fake(movie: Partial<Movie> = {}): Movie {
     return {
-      id: '1',
-      name: 'Test',
-      classification: 10,
-      genre: 'fiction',
-      resume: 'Test movie resume',
+      id: movie.id || '1',
+      name: movie.name || 'Test',
+      classification: movie.classification || 10,
+      genre: movie.genre || 'fiction',
+      resume: movie.resume || 'Test movie resume',
     };
   }
 

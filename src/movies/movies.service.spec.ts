@@ -74,8 +74,9 @@ describe('MoviesService', () => {
   });
 
   it('should not create a movie with a resume less than 10 caracters', async () => {
-    const movie = repository.fake();
-    movie.resume = '123456789'; // Phrase with 9 caracters
+    const movie = repository.fake({
+      resume: '123456789', // Phrase with 9 caracters
+    });
 
     const result = service.create(movie as MovieDTO);
 
@@ -83,9 +84,10 @@ describe('MoviesService', () => {
   });
 
   it('should not create a movie with a classification less than 18 to genre "terror"', async () => {
-    const movie = repository.fake();
-    movie.classification = 16;
-    movie.genre = 'terror';
+    const movie = repository.fake({
+      classification: 16,
+      genre: 'terror',
+    });
 
     const result = service.create(movie as MovieDTO);
 
@@ -93,9 +95,10 @@ describe('MoviesService', () => {
   });
 
   it('should not create a movie with a classification less than 18 to genre "hot"', async () => {
-    const movie = repository.fake();
-    movie.classification = 16;
-    movie.genre = 'hot';
+    const movie = repository.fake({
+      classification: 17,
+      genre: 'hot',
+    });
 
     const result = service.create(movie as MovieDTO);
 
