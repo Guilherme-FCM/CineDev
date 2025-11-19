@@ -17,6 +17,10 @@ export class MoviesService implements ServiceInterface {
   }
 
   async create(movie: MovieDTO) {
+    const finded = await this.repository.firstByName(movie.name);
+
+    if (finded) throw new Error('Movie name already exist');
+
     return await this.repository.create(movie);
   }
 }

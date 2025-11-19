@@ -56,11 +56,20 @@ describe('MoviesService', () => {
   // create
   // -------------------------
   it('should create a movie', async () => {
-    const movie = repository.fake() as MovieDTO;
+    const movie = repository.fake();
 
-    const result = await service.create(movie);
+    const result = await service.create(movie as MovieDTO);
     const list = await repository.list();
 
     expect(list).toContain(result);
+  });
+
+  it('should not create a movie with a name alredy existent', async () => {
+    const movie = repository.fake();
+    repository.data.push(movie);
+
+    const result = service.create(movie as MovieDTO);
+
+    await expect(async () => result).rejects.toThrow();
   });
 });
