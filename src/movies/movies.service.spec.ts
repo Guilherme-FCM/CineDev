@@ -79,6 +79,26 @@ describe('MoviesService', () => {
 
     const result = service.create(movie as MovieDTO);
 
-    await expect(async () => result).rejects.toThrow();
+    await expect(() => result).rejects.toThrow();
+  });
+
+  it('should not create a movie with a classification less than 18 to genre "terror"', async () => {
+    const movie = repository.fake();
+    movie.classification = 16;
+    movie.genre = 'terror';
+
+    const result = service.create(movie as MovieDTO);
+
+    await expect(() => result).rejects.toThrow();
+  });
+
+  it('should not create a movie with a classification less than 18 to genre "hot"', async () => {
+    const movie = repository.fake();
+    movie.classification = 16;
+    movie.genre = 'hot';
+
+    const result = service.create(movie as MovieDTO);
+
+    await expect(() => result).rejects.toThrow();
   });
 });
