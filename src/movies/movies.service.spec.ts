@@ -53,6 +53,24 @@ describe('MoviesService', () => {
   });
 
   // -------------------------
+  // findOne
+  // -------------------------
+  it('should return a specific movie', async () => {
+    const movie = repository.fake();
+    repository.data.push(movie);
+
+    const result = await service.findOne(movie.id);
+
+    expect(result).toEqual(movie);
+  });
+
+  it('should not return a not found movie', async () => {
+    const result = service.findOne('unknown');
+
+    await expect(() => result).rejects.toThrow();
+  });
+
+  // -------------------------
   // create
   // -------------------------
   it('should create a movie', async () => {

@@ -8,6 +8,10 @@ export class MockService implements ServiceInterface {
     throw new Error('Method not implemented.');
   }
 
+  findOne(id: string): Promise<Movie> {
+    throw new Error('Method not implemented.');
+  }
+
   create(movie: Movie): Promise<Movie> {
     throw new Error('Method not implemented.');
   }

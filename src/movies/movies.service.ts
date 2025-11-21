@@ -19,6 +19,12 @@ export class MoviesService implements ServiceInterface {
     return MoviesDTO.to(movies);
   }
 
+  async findOne(id: string) {
+    const movie = await this.repository.findById(id);
+    if (!movie) throw new Error('Movie not found');
+    return movie;
+  }
+
   async create(movie: MovieDTO) {
     if (movie.resume.length < 10)
       throw new Error('Resume must have at least 10 caracters');
