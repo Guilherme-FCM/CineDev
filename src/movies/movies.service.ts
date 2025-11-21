@@ -48,6 +48,9 @@ export class MoviesService implements ServiceInterface {
   }
 
   async delete(id: string): Promise<void> {
+    const list = await this.repository.list();
+    if (list.length === 1) throw new Error('Cannot delete the last movie');
+
     const result = await this.repository.delete(id);
 
     if (!result) throw new Error('Movie not found');

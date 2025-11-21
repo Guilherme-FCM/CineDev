@@ -140,15 +140,26 @@ describe('MoviesService', () => {
   // delete
   // -------------------------
   it('should delete a movie', async () => {
-    repository.data.push(repository.fake());
+    repository.data.push(
+      repository.fake({ id: '1' }),
+      repository.fake({ id: '2' }),
+    );
 
     await service.delete('1');
 
-    expect(repository.data.length).toBe(0);
+    expect(repository.data.length).toBe(1);
   });
 
   it('should not delete a not existent movie', async () => {
     const result = service.delete('unknown');
+
+    await expect(() => result).rejects.toThrow();
+  });
+
+  it('should not delete the last movie', async () => {
+    repository.data.push(repository.fake());
+
+    const result = service.delete('1');
 
     await expect(() => result).rejects.toThrow();
   });
