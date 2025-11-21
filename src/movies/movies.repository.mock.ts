@@ -41,4 +41,12 @@ export class MoviesMockRepository implements MoviesRepository {
 
     return Promise.resolve(this.data[index]);
   }
+
+  delete(id: string): Promise<boolean> {
+    const movie = this.data.find((m) => m.id === id);
+    if (!movie) return Promise.resolve(false);
+
+    this.data = this.data.filter((m) => m.id !== id);
+    return Promise.resolve(true);
+  }
 }

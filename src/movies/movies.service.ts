@@ -46,4 +46,10 @@ export class MoviesService implements ServiceInterface {
   async update(id: string, movie: { resume: string }) {
     return await this.repository.update(id, movie);
   }
+
+  async delete(id: string): Promise<void> {
+    const result = await this.repository.delete(id);
+
+    if (!result) throw new Error('Movie not found');
+  }
 }

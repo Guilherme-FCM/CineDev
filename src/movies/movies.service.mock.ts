@@ -19,4 +19,8 @@ export class MockService implements ServiceInterface {
   update(id: string, movie: { resume: string }): Promise<Movie> {
     throw new Error('Method not implemented.');
   }
+
+  delete(id: string): Promise<void> {
+    throw new Error('Method not implemented.');
+  }
 }

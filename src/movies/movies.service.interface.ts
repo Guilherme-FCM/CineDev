@@ -6,4 +6,5 @@ export interface ServiceInterface {
   findOne(id: string): Promise<Movie>;
   create(movie: MoviesDTO): Promise<Movie>;
   update(id: string, movie: { resume: string }): Promise<Movie>;
+  delete(id: string): Promise<void>;
 }

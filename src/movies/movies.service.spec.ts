@@ -135,4 +135,21 @@ describe('MoviesService', () => {
     expect(movie.id).toBe('1');
     expect(movie.resume).toBe('Updated resume');
   });
+
+  // -------------------------
+  // delete
+  // -------------------------
+  it('should delete a movie', async () => {
+    repository.data.push(repository.fake());
+
+    await service.delete('1');
+
+    expect(repository.data.length).toBe(0);
+  });
+
+  it('should not delete a not existent movie', async () => {
+    const result = service.delete('unknown');
+
+    await expect(() => result).rejects.toThrow();
+  });
 });
