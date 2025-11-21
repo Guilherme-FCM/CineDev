@@ -36,4 +36,8 @@ export class MoviesService implements ServiceInterface {
 
     return await this.repository.create(movie);
   }
+
+  async update(id: string, movie: { resume: string }) {
+    return await this.repository.update(id, movie);
+  }
 }

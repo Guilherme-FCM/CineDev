@@ -104,4 +104,17 @@ describe('MoviesService', () => {
 
     await expect(() => result).rejects.toThrow();
   });
+
+  // -------------------------
+  // update
+  // -------------------------
+  it('should update a resume movie', async () => {
+    repository.data.push(repository.fake());
+
+    const movie = await service.update('1', { resume: 'Updated resume' });
+
+    expect(movie).toBeDefined();
+    expect(movie.id).toBe('1');
+    expect(movie.resume).toBe('Updated resume');
+  });
 });

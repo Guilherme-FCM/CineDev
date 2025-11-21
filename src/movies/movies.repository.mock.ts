@@ -29,4 +29,11 @@ export class MoviesMockRepository implements MoviesRepository {
     this.data.push(movie);
     return Promise.resolve(movie);
   }
+
+  update(id: string, movie: Partial<Movie>): Promise<Movie> {
+    const index = this.data.findIndex((m) => m.id === id);
+    this.data[index] = { ...this.data[index], ...movie };
+
+    return Promise.resolve(this.data[index]);
+  }
 }
