@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { MoviesController } from './movies.controller';
-import { MockService } from './movies.service.mock';
-import { MoviesService } from './movies.service';
+import { MoviesController } from '../controller/movies.controller';
+import { MockService } from '../service/movies.service.mock';
+import { MoviesService } from '../service/movies.service';
 
 describe('MoviesController', () => {
   let controller: MoviesController;

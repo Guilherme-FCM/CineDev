@@ -1,5 +1,5 @@
-import { MoviesDTO } from './dtos/movies.dto';
-import { Movie } from './movies.entity';
+import { MoviesDTO } from '../dtos/movies.dto';
+import { Movie } from '../movies.entity';
 
 export interface ServiceInterface {
   findAll(): Promise<Movie[]>;

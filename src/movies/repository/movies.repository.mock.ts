@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { MoviesRepository } from './movies.repository.interface';
-import { Movie } from './movies.entity';
+import { Movie } from '../movies.entity';
 
 @Injectable()
 export class MoviesMockRepository implements MoviesRepository {

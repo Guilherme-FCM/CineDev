@@ -1,8 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ServiceInterface } from './movies.service.interface';
-import { MoviesRepository } from './movies.repository.interface';
-import { MovieDTO } from './dtos/movie.dto';
-import { MoviesDTO } from './dtos/movies.dto';
+import { MoviesRepository } from '../repository/movies.repository.interface';
+import { MovieDTO } from '../dtos/movie.dto';
+import { MoviesDTO } from '../dtos/movies.dto';
 
 @Injectable()
 export class MoviesService implements ServiceInterface {
